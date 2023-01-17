@@ -1,7 +1,7 @@
 <section class="phx-hero">
-  <h1><%= gettext "Welcome to %{name}!", name: "Phoenix" %></h1>
-  <p>Foo: <%= @foo %></p>
-  <p>Peace of mind from prototype to production</p>
+  <%= for [name, year] <- @composers do %>
+    <p><%= name %> — <%= year %></p>
+  <% end %>
 </section>
 
 <section class="row">

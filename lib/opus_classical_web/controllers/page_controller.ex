@@ -3,7 +3,7 @@ defmodule OpusClassicalWeb.PageController do
 
   def index(conn, _params) do
     conn
-    |> assign(:foo, "bar")
+    |> assign(:composers, OpusClassical.Domain.get_composers())
     |> render("index.html")
   end
 end
