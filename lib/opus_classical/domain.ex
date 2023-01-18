@@ -1,9 +1,9 @@
 defmodule OpusClassical.Domain do
-    def get_composers() do
-        sql = "SELECT name, year FROM composers"
-        case OpusClassical.Repo.query(sql) do
-            {:ok, %{rows: rows}} -> rows
-            {_, _} -> []
-        end
+  @periods_composers_sql "select json from periods_composers"
+  def get_composers() do
+    case OpusClassical.Repo.query(@periods_composers_sql) do
+      {:ok, %{rows: [[json]]}} -> json
+      {_, _} -> []
     end
+  end
 end

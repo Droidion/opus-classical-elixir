@@ -31,12 +31,22 @@ config :swoosh, :api_client, false
 
 # Configure esbuild (the version is required)
 config :esbuild,
-  version: "0.14.29",
+  version: "0.17.2",
   default: [
     args:
       ~w(js/app.js --bundle --target=es2017 --outdir=../priv/static/assets --external:/fonts/* --external:/images/*),
     cd: Path.expand("../assets", __DIR__),
     env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
+  ]
+
+config :dart_sass,
+  version: "1.57.1",
+  default: [
+    args: [
+      "css/app.sass",
+      "../priv/static/assets/app.css"
+    ],
+    cd: Path.expand("../assets", __DIR__)
   ]
 
 # Configures Elixir's Logger
