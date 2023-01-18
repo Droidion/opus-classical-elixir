@@ -1,5 +1,7 @@
 # OpusClassical
 
+[![Elixir CI](https://github.com/Droidion/opus-classical-elixir/actions/workflows/elixir.yml/badge.svg)](https://github.com/Droidion/opus-classical-elixir/actions/workflows/elixir.yml)
+
 Create file `config/dev.secret.exs` with the following content for connecting to database:
 
 ```elixir
