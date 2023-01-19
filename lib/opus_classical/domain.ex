@@ -3,6 +3,7 @@ defmodule OpusClassical.Domain do
   @composer_sql "SELECT composer_by_slug($1) AS json"
   @genres_sql "SELECT genres_and_works_by_composer($1) AS json"
   @recordings_sql "SELECT recordings_by_work($1) AS json"
+  @search_sql "SELECT id, first_name, last_name, slug, last_name_score FROM search_composers_by_last_name($1, $2)"
   @work_by_id """
     select w.id,
            w.title,
@@ -78,6 +79,13 @@ defmodule OpusClassical.Domain do
     case OpusClassical.Repo.query(@child_works_by_parent_work_id, [id]) do
       {:ok, %{rows: works}} -> works
       {_, _} -> nil
+    end
+  end
+
+  def search_composers(query, limit) do
+    case OpusClassical.Repo.query(@search_sql, [query, limit]) do
+      {:ok, %{rows: composers}} -> composers
+      {_, _} -> []
     end
   end
 end

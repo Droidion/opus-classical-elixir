@@ -1,4 +1,23 @@
-<a href="#" phx-click="increase">+</a>
-<a href="#" phx-click="decrease">-</a>
+<div class="search-button" phx-click={show_search()}>
+    <img src="/img/search-icon.svg" alt="Search"/>
+</div>
 
-<a><%= @count %></a>
+<div class="search-wrapper" style="display: none;">
+    <div class="search" phx-click-away={hide_search()}>
+        <form phx-change="change_search">
+        <input class="search__field"
+               type="search"
+               name="searchInput"
+               phx-debounce="200"
+               phx-change="change_search"
+               placeholder="Search composers by last name"/>
+        </form>
+        <%= for composer <- @search_results do %>
+            <a href={"/composer/#{Enum.at(composer, 3)}"}>
+                <div class="search__result">
+                    <%= Enum.at(composer, 2)%>, <%=Enum.at(composer, 1) %>
+                </div>
+            </a>
+        <% end %>
+    </div>
+</div>
