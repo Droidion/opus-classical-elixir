@@ -33,15 +33,12 @@ defmodule OpusClassicalWeb.PageController do
 
   def work(conn, %{"slug" => slug, "id" => id}) do
     id_as_numb = String.to_integer(id)
-    IO.inspect(id_as_numb)
 
     work =
       id_as_numb
       |> OpusClassical.Domain.get_work()
       |> OpusClassical.Helpers.map_work()
       |> OpusClassical.Helpers.enrich_work()
-
-    IO.inspect(work)
 
     child_works =
       id_as_numb
@@ -50,16 +47,12 @@ defmodule OpusClassicalWeb.PageController do
         work |> OpusClassical.Helpers.map_work() |> OpusClassical.Helpers.enrich_work()
       end)
 
-    IO.inspect(child_works)
     composer = OpusClassical.Domain.get_composer(slug)
-    IO.inspect(composer)
 
     recordings =
       id_as_numb
       |> OpusClassical.Domain.get_recordings()
       |> Enum.map(fn recording -> recording |> OpusClassical.Helpers.enrich_recording() end)
-
-    IO.inspect(recordings)
 
     conn
     |> assign(:work, work)
