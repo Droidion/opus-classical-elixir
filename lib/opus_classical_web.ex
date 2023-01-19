@@ -45,7 +45,7 @@ defmodule OpusClassicalWeb do
   def live_view do
     quote do
       use Phoenix.LiveView,
-        layout: {OpusClassicalWeb.LayoutView, "live.html"}
+        layout: {OpusClassicalWeb.LayoutView, :live}
 
       unquote(view_helpers())
     end

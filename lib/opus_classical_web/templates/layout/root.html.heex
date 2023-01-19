@@ -19,7 +19,7 @@
     <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js")}></script>
   </head>
   <body>
-    <%= render OpusClassicalWeb.PartialsView, "header.html" %>
+    <%= render OpusClassicalWeb.PartialsView, "header.html", conn: @conn %>
     <main class="main" role="main"><%= @inner_content %></main>
     <%= render OpusClassicalWeb.PartialsView, "footer.html" %>
   </body>
