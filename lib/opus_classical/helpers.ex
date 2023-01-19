@@ -75,4 +75,81 @@ defmodule OpusClassical.Helpers do
       {h, m} -> "#{h}h #{m}m"
     end
   end
+
+  def format_catalogue_name(work) do
+    postfix = work["cataloguePostfix"] || ""
+
+    if work["catalogueName"] && work["catalogueNumber"] do
+      "#{work["catalogueName"]} #{work["catalogueNumber"]}#{postfix}"
+    else
+      nil
+    end
+  end
+
+  def format_work_name(work) do
+    cond do
+      work["no"] && work["nickname"] ->
+        "#{work["title"]} No. #{work["no"]}&nbsp;<em>#{work["nickname"]}</em>"
+
+      work["no"] && !work["nickname"] ->
+        "#{work["title"]} No. #{work["no"]}"
+
+      !work["no"] && work["nickname"] ->
+        "#{work["title"]}&nbsp;<em>#{work["nickname"]}</em>"
+
+      true ->
+        work["title"]
+    end
+  end
+
+  def map_work(work_as_list) do
+    %{
+      "id" => Enum.at(work_as_list, 0),
+      "title" => Enum.at(work_as_list, 1),
+      "yearStart" => Enum.at(work_as_list, 2),
+      "yearFinish" => Enum.at(work_as_list, 3),
+      "averageMinutes" => Enum.at(work_as_list, 4),
+      "catalogueName" => Enum.at(work_as_list, 5),
+      "catalogueNumber" => Enum.at(work_as_list, 6),
+      "cataloguePostfix" => Enum.at(work_as_list, 7),
+      "key" => Enum.at(work_as_list, 8),
+      "no" => Enum.at(work_as_list, 9),
+      "nickname" => Enum.at(work_as_list, 10)
+    }
+  end
+
+  def enrich_work(work) do
+    work
+    |> Map.put(
+      "composePeriod",
+      format_years_range_loose(
+        work["yearStart"],
+        work["yearFinish"]
+      )
+    )
+    |> Map.put(
+      "averageLengthFormatted",
+      format_work_length(work["averageMinutes"])
+    )
+    |> Map.put(
+      "catalogueNotation",
+      format_catalogue_name(work)
+    )
+    |> Map.put(
+      "fullName",
+      format_work_name(work)
+    )
+  end
+
+  def enrich_recording(recording) do
+    recording
+    |> Map.put(
+      "lengthFormatted",
+      format_work_length(recording["length"])
+    )
+    |> Map.put(
+      "recordingPeriod",
+      format_years_range_loose(recording["yearStart"], recording["yearFinish"])
+    )
+  end
 end

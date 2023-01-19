@@ -1,0 +1,24 @@
+<div class="card">
+    <div>
+        <span><%= raw @work["fullName"] %></span>
+    </div>
+    <%= if @work["catalogueNotation"] || @work["composePeriod"] || @work["averageLengthFormatted"] do %>
+    <div class="card__subtitle">
+        <%= if @work["catalogueNotation"] do %>
+            <span><%= @work["catalogueNotation"] %></span>
+            <%= if @work["composePeriod"] || @work["averageLengthFormatted"] do %>
+                <span class="vertical-separator"></span>
+            <% end %>
+        <% end %>
+        <%= if @work["composePeriod"] do %>
+            <span><%= @work["composePeriod"] %></span>
+            <%= if @work["averageLengthFormatted"] do %>
+                <span class="vertical-separator"></span>
+            <% end %>
+        <% end %>
+        <%= if @work["averageLengthFormatted"] do %>
+            <span><%= @work["averageLengthFormatted"] %></span>
+        <% end %>
+    </div>
+    <% end %>
+</div>

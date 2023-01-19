@@ -1,0 +1,26 @@
+<h1><%= raw @work["fullName"] %><%= if @work["catalogueNotation"] do %>, <%= @work["catalogueNotation"] %><% end %></h1>
+<div class="header-subtitle">
+    <%= link to: "/composer/#{@composer["slug"]}" do %>
+        <%= @composer["firstName"] %> <%= @composer["lastName"] %>
+    <% end %>
+    <%= if @work["composePeriod"] do %><span>, <%= @work["composePeriod"] %></span>
+    <% end %>
+</div>
+
+<%= if length(@child_works) > 0 do %>
+    <h2>Individual Works</h2>
+    <hr/>
+    <div class="card-list">
+        <%= for work <- @child_works do %>
+            <%= render OpusClassicalWeb.PartialsView, "work_card.html", work: work %>
+        <% end %>
+    </div>
+<% end %>
+
+<h2>Recommended Recordings</h2>
+<hr/>
+<div class="card-list full-width">
+    <%= for recording <- @recordings do %>
+        <%= render OpusClassicalWeb.PartialsView, "recording_card.html", recording: recording, static_assets_url: @static_assets_url %>
+    <% end %>
+</div>

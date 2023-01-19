@@ -1,0 +1,20 @@
+<div class="card illustrated">
+    <img class="cover" src={@static_assets_url <> @recording["coverName"]} alt="Cover"/>
+    <div>
+        <%= for performer <- @recording["performers"] do %>
+            <%= render OpusClassicalWeb.PartialsView, "performer.html", performer: performer %>
+        <% end %>
+        <div class="card__subtitle">
+            <span><%= @recording["label"] %></span>
+            <span class="vertical-separator"></span>
+            <span><%= @recording["recordingPeriod"] %></span>
+            <span class="vertical-separator"></span>
+            <span><%= @recording["lengthFormatted"] %></span>
+        </div>
+        <div class="card__streamers">
+            <%= for streamer <- @recording["streamers"] do %>
+                <%= render OpusClassicalWeb.PartialsView, "streamer.html", streamer: streamer %>
+            <% end %>
+        </div>
+    </div>
+</div>

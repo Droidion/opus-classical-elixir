@@ -17,7 +17,10 @@ defmodule OpusClassicalWeb.Router do
   scope "/", OpusClassicalWeb do
     pipe_through :browser
 
-    get "/", PageController, :index
+    get "/", PageController, :periods
+    get "/about", PageController, :about
+    get "/composer/:slug", PageController, :composer
+    get "/composer/:slug/work/:id", PageController, :work
   end
 
   # Other scopes may use custom stacks.

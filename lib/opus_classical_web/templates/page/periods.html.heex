@@ -1,0 +1,13 @@
+<h1>Composers</h1>
+<%= for period <- @composers do %>
+  <h2><%= period["name"] %>, <%= period["yearStart"] %>–<%= period["yearEnd"] %></h2>
+  <hr/>
+  <div class="card-list">
+    <%= for composer <- period["composers"] do %>
+      <%= link to: "/composer/#{composer["slug"]}" do %>
+        <%= render OpusClassicalWeb.PartialsView, "composer_card.html", composer: composer %>
+      <% end %>
+    <% end %>
+  </div>
+<% end %> 
+

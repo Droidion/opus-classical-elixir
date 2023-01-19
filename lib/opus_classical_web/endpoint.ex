@@ -20,7 +20,7 @@ defmodule OpusClassicalWeb.Endpoint do
     at: "/",
     from: :opus_classical,
     gzip: false,
-    only: ~w(assets fonts images favicon.ico robots.txt)
+    only: ~w(assets fonts img favicon.ico robots.txt site.webmanifest browserconfig.xml)
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
