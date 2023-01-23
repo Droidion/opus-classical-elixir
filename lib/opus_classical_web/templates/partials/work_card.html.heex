@@ -10,7 +10,7 @@
                 <span class="vertical-separator"></span>
             <% end %>
         <% end %>
-        <%= if @work["composePeriod"] do %>
+        <%= if @work["composePeriod"] != "" do %>
             <span><%= @work["composePeriod"] %></span>
             <%= if @work["averageLengthFormatted"] do %>
                 <span class="vertical-separator"></span>

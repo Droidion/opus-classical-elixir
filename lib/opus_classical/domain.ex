@@ -41,49 +41,49 @@ defmodule OpusClassical.Domain do
   """
 
   def get_composers() do
-    case OpusClassical.Repo.query(@periods_composers_sql) do
+    case @periods_composers_sql |> OpusClassical.Repo.query() do
       {:ok, %{rows: [[json]]}} -> json
       {_, _} -> []
     end
   end
 
   def get_composer(slug) do
-    case OpusClassical.Repo.query(@composer_sql, [slug]) do
+    case @composer_sql |> OpusClassical.Repo.query([slug]) do
       {:ok, %{rows: [[json]]}} -> json
       {_, _} -> nil
     end
   end
 
   def get_genres(slug) do
-    case OpusClassical.Repo.query(@genres_sql, [slug]) do
+    case @genres_sql |> OpusClassical.Repo.query([slug]) do
       {:ok, %{rows: [[json]]}} -> json
       {_, _} -> nil
     end
   end
 
   def get_recordings(id) do
-    case OpusClassical.Repo.query(@recordings_sql, [id]) do
+    case @recordings_sql |> OpusClassical.Repo.query([id]) do
       {:ok, %{rows: [[json]]}} -> json
       {_, _} -> nil
     end
   end
 
   def get_work(id) do
-    case OpusClassical.Repo.query(@work_by_id, [id]) do
+    case @work_by_id |> OpusClassical.Repo.query([id]) do
       {:ok, %{rows: [work | _]}} -> work
       {_, _} -> nil
     end
   end
 
   def get_child_works(id) do
-    case OpusClassical.Repo.query(@child_works_by_parent_work_id, [id]) do
+    case @child_works_by_parent_work_id |> OpusClassical.Repo.query([id]) do
       {:ok, %{rows: works}} -> works
       {_, _} -> nil
     end
   end
 
   def search_composers(query, limit) do
-    case OpusClassical.Repo.query(@search_sql, [query, limit]) do
+    case @search_sql |> OpusClassical.Repo.query([query, limit]) do
       {:ok, %{rows: composers}} -> composers
       {_, _} -> []
     end
