@@ -16,7 +16,7 @@ config :opus_classical, OpusClassicalWeb.Endpoint,
   secret_key_base: "yXVBz4GSKR1ptGEqjjgvy5H+nbxRWk2NcPMnCYonayWvSptWUqBA9o2KdjaF131m",
   watchers: [
     # Start the esbuild watcher by calling Esbuild.install_and_run(:default, args)
-    esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]},
+    node: ["esbuild.js", "--watch", cd: Path.expand("../assets", __DIR__)],
     sass: {
       DartSass,
       :install_and_run,

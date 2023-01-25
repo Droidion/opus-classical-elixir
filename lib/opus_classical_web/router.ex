@@ -23,10 +23,11 @@ defmodule OpusClassicalWeb.Router do
     get "/composer/:slug/work/:id", PageController, :work
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", OpusClassicalWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", OpusClassicalWeb do
+    pipe_through :api
+
+    get "/search", ApiController, :search
+  end
 
   # Enables LiveDashboard only for development
   #

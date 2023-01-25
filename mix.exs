@@ -42,7 +42,6 @@ defmodule OpusClassical.MixProject do
       {:phoenix_live_view, "~> 0.18.9"},
       {:floki, ">= 0.34.0", only: :test},
       {:phoenix_live_dashboard, "~> 0.7"},
-      {:esbuild, "~> 0.6", runtime: Mix.env() == :dev},
       {:swoosh, "~> 1.9"},
       {:telemetry_metrics, "~> 0.6"},
       {:telemetry_poller, "~> 1.0"},
@@ -61,12 +60,12 @@ defmodule OpusClassical.MixProject do
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
     [
-      setup: ["deps.get", "ecto.setup"],
+      setup: ["deps.get", "ecto.setup", "cmd npm --prefix assets install"],
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["test"],
       "assets.deploy": [
-        "esbuild default --minify",
+        "cmd npm --prefix assets run deploy",
         "sass default --no-source-map --style=compressed",
         "phx.digest"
       ]
