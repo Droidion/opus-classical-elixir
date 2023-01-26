@@ -13,7 +13,6 @@
     "@types/dom-inputevent": "^1.0.7",
     "@types/node": "^18.11.18",
     "esbuild": "^0.17.4",
-    "esbuild-plugin-compress": "^1.0.1",
     "esbuild-sass-plugin": "^2.4.5",
     "esbuild-svelte": "^0.7.3",
     "phoenix": "^1.6.15",

@@ -4,11 +4,14 @@ defmodule OpusClassicalWeb.PageController do
   def periods(conn, _params) do
     conn
     |> assign(:composers, OpusClassical.Domain.get_composers())
+    |> assign(:page_title, "Composers")
     |> render("periods.html")
   end
 
   def about(conn, _params) do
-    conn |> render("about.html")
+    conn
+    |> assign(:page_title, "About")
+    |> render("about.html")
   end
 
   def composer(conn, %{"slug" => slug}) do
@@ -28,6 +31,7 @@ defmodule OpusClassicalWeb.PageController do
     conn
     |> assign(:composer, composer)
     |> assign(:genres, genres)
+    |> assign(:page_title, composer["lastName"])
     |> render("composer.html")
   end
 
@@ -59,6 +63,7 @@ defmodule OpusClassicalWeb.PageController do
     |> assign(:child_works, child_works)
     |> assign(:composer, composer)
     |> assign(:recordings, recordings)
+    |> assign(:page_title, work["fullName"])
     |> assign(:static_assets_url, "https://opusclassical.zunh.nl-ams1.upcloudobjects.com/")
     |> render("work.html")
   end

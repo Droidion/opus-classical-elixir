@@ -3,7 +3,6 @@
 import esbuild from "esbuild";
 import esbuildSvelte from "esbuild-svelte";
 import sveltePreprocess from "svelte-preprocess";
-import { compress } from 'esbuild-plugin-compress';
 import { sassPlugin } from 'esbuild-sass-plugin';
 
 let mode = 'build'
@@ -25,8 +24,7 @@ let opts = {
     plugins: [
         esbuildSvelte({
             preprocess: sveltePreprocess(),
-        }),
-        //compress()
+        })
     ],
 }
 if (mode === 'watch') {
@@ -41,8 +39,6 @@ if (mode === 'deploy') {
         ...opts
     }
 }
-
-console.log(opts)
 
 const ctx = await esbuild.context(opts)
 if (mode === 'watch') {
