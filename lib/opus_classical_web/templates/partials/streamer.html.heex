@@ -1,5 +1,5 @@
 <div class="card__streamer-el">
-    <%= link to: "#{@streamer["prefix"] <> @streamer["link"]}", class: "umami--click--#{String.replace(@streamer["name"], " ", "-")}" do %>
+    <a href={@streamer["prefix"] <> @streamer["link"]}>
         <img src={"/img/" <> @streamer["icon"]} height="24" width="24" alt="Streaming service logo"/>
-    <% end %>
+    </a>
 </div>
