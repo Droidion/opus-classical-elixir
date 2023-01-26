@@ -54,8 +54,6 @@ defmodule OpusClassicalWeb.PageController do
       |> OpusClassical.Domain.get_recordings()
       |> Enum.map(fn recording -> recording |> OpusClassical.Helpers.enrich_recording() end)
 
-    IO.inspect(recordings)
-
     conn
     |> assign(:work, work)
     |> assign(:child_works, child_works)

@@ -41,11 +41,10 @@ defmodule OpusClassical.MixProject do
       {:phoenix_live_reload, "~> 1.4", only: :dev},
       {:phoenix_live_view, "~> 0.18.9"},
       {:floki, ">= 0.34.0", only: :test},
+      {:gettext, "~> 0.18"},
       {:phoenix_live_dashboard, "~> 0.7"},
-      {:swoosh, "~> 1.9"},
       {:telemetry_metrics, "~> 0.6"},
       {:telemetry_poller, "~> 1.0"},
-      {:gettext, "~> 0.21"},
       {:jason, "~> 1.4"},
       {:plug_cowboy, "~> 2.6"},
       {:dart_sass, "~> 0.5", runtime: Mix.env() == :dev}

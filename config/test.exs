@@ -21,9 +21,6 @@ config :opus_classical, OpusClassicalWeb.Endpoint,
   secret_key_base: "OkbF0BW/TYb2cPBKibKJlSmtXkPl6YlKuHtNWKkqbIScjQTr/v49YiMMDNRRMZBz",
   server: false
 
-# In test we don't send emails.
-config :opus_classical, OpusClassical.Mailer, adapter: Swoosh.Adapters.Test
-
 # Print only warnings and errors during test
 config :logger, level: :warn
 

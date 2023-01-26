@@ -22,7 +22,6 @@ defmodule OpusClassicalWeb do
       use Phoenix.Controller, namespace: OpusClassicalWeb
 
       import Plug.Conn
-      import OpusClassicalWeb.Gettext
       alias OpusClassicalWeb.Router.Helpers, as: Routes
     end
   end
@@ -80,7 +79,6 @@ defmodule OpusClassicalWeb do
   def channel do
     quote do
       use Phoenix.Channel
-      import OpusClassicalWeb.Gettext
     end
   end
 
@@ -95,8 +93,6 @@ defmodule OpusClassicalWeb do
       # Import basic rendering functionality (render, render_layout, etc)
       import Phoenix.View
 
-      import OpusClassicalWeb.ErrorHelpers
-      import OpusClassicalWeb.Gettext
       alias OpusClassicalWeb.Router.Helpers, as: Routes
     end
   end
